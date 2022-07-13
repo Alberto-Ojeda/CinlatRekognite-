@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head>
+        <meta charset="utf-8">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <link th:href="@{/css/bootstrap.min.css}"  rel="stylesheet" href="../static/css/bootstrap.css"/>
+        <script th:href="@{/js/jquery.js}" href="../static/js/jquery.js"></script>
+        <script th:href="@{/js/bootstrap.js}" href="../static/css/bootstrap.min.css"></script>
+        <script th:href="@{/js/bootstrap.bundle.min.js}" href="../static/js/bootstrap.bundle.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>CINLAT</title>
+       
+    </head>
+    <body>
+
+        <header th:replace="index :: header"></header>
+    
+          <main>
+          
+      		<h1 th:text="${titulo}" ></h1>
+            <div class="b-example-divider"></div>
+      
+            <div class="container mt-5">
+              <div class="row">
+                <div class="col-12 col-md-4 offset-md-4 text-center">
+                  <video id="video" playsinline autoplay style="width: 1px;"></video>
+                  <button class="btn btn-primary mb-2" id="cambiar-camara" onclick="cambiarCamara();">Cambiar camara</button>
+                  <canvas id="canvas" width="400" height="400" style="max-width: 100%;"></canvas>
+                  <canvas id="otrocanvas" width="400" height="400" style="" ></canvas>
+                  <div id="resultado"></div>            
+                  <button id="boton" class="btn btn-primary">captura</button>
+                  <div style="height: 40px;"></div>
+			 <form method="POST" th:action="@{/uploadFile}" enctype="multipart/form-data">
+			    <input id="imagencarga" type="file" name="file"/> <br/><br/>
+			    <button type="submit">Submit</button>
+			  </form>
+			    </div>
+              </div>
+            </div>
+      
+            <div class="b-example-divider"></div>
+      <footer>
+      <div  th:replace="index :: footer"></div>
+      </footer>
+      
+          
+          </main>
+      
+      
+        <script type="text/javascript">
+        
+   
+      
+          let tamano = 400;
+          let video = document.getElementById("video");
+          let canvas = document.getElementById("canvas");
+          let otrocanvas = document.getElementById("otrocanvas");
+          let ctx = canvas.getContext("2d");
+          let currentStream = null;
+          let facingMode = "user";
+      
+      
+      
+          window.onload = function() {
+            mostrarCamara();
+          }
+      
+          function mostrarCamara() {
+            let opciones = {
+              audio: false,
+              video: {
+                width: tamano, height: 700
+              }
+            }
+      
+            if (navigator.mediaDevices.getUserMedia) {
+              navigator.mediaDevices.getUserMedia(opciones)
+                  .then(function(stream) {
+                    currentStream = stream;
+                    video.srcObject = currentStream;
+                    procesarCamara();
+                  })
+                  .catch(function(err) {
+/*                     alert("The camera could not be used");
+ */                    console.log(err);
+/*                     alert(err);
+ */                  })
+            } else {
+/*               alert("No existe la funcion getUserMedia");
+ */            }
+          }
+      
+          function cambiarCamara() {
+                if (currentStream) {
+                    currentStream.getTracks().forEach(track => {
+                        track.stop();
+                    });
+                }
+      
+                facingMode = facingMode == "user" ? "environment" : "user";
+      
+                let opciones = {
+                    audio: false,
+                    video: {
+                        facingMode: facingMode, width: tamano, height: tamano
+                    }
+                };
+      
+      
+                navigator.mediaDevices.getUserMedia(opciones)
+                    .then(function(stream) {
+                        currentStream = stream;
+                        video.srcObject = currentStream;
+                    })
+                    .catch(function(err) {
+                        console.log("Oops, hubo un error", err);
+                    })
+            }
+      
+          function procesarCamara() {
+            ctx.drawImage(video, 0, 0, tamano, tamano, 0, 0, tamano, tamano);
+            setTimeout(procesarCamara, 20);
+          }
+      
+    
+      
+          
+          document.getElementById("boton").addEventListener("click",()=> {
+	takePicture();
+});
+function takePicture(){
+	let ctx2 = otrocanvas.getContext('2d');
+    ctx2.drawImage(video, 0, 0, tamano, tamano, 0, 0, tamano, tamano);
+	
+     let foto = otrocanvas.toDataURL();
+     let enlace = document.createElement('a');
+     enlace.download="prueba.png"
+     enlace.href = foto;
+     enlace.click();
+}
+
+
+
+        </script>
+        </body>
+      </html>

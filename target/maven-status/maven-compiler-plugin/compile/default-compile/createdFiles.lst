@@ -1,0 +1,4 @@
+com\cinlat\controllers\DetectLabels.class
+com\cinlat\controllers\apicontroller.class
+com\cinlat\CinlatRekogniteApplication.class
+com\cinlat\controllers\StartModel.class
