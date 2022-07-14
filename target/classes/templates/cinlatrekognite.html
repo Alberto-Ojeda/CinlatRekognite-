@@ -34,13 +34,14 @@
                   <video id="video" playsinline autoplay style="width: 1px;"></video>
                   <button class="btn btn-primary mb-2" id="cambiar-camara" onclick="cambiarCamara();">Cambiar camara</button>
                   <canvas id="canvas" width="400" height="400" style="max-width: 100%;"></canvas>
-                  <canvas id="otrocanvas" width="400" height="400" style="" ></canvas>
+                  <canvas id="otrocanvas" width="400" height="400" style="display:none;" ></canvas>
                   <div id="resultado"></div>            
                   <button id="boton" class="btn btn-primary">captura</button>
                   <div style="height: 40px;"></div>
 			 <form method="POST" th:action="@{/uploadFile}" enctype="multipart/form-data">
-			    <input id="imagencarga" type="file" name="file"/> <br/><br/>
-			    <button type="submit">Submit</button>
+    <input id="cargafile" type="file" name="file" style="display: none;"/><br>
+    <div style="height: 30px;"></div>
+			    <button id="putfile" type="submit" style="display: none;">Submit</button>
 			  </form>
 			    </div>
               </div>
@@ -136,15 +137,31 @@
           document.getElementById("boton").addEventListener("click",()=> {
 	takePicture();
 });
-function takePicture(){
-	let ctx2 = otrocanvas.getContext('2d');
+
+/*	this case the file save in local how to image
+let ctx2 = otrocanvas.getContext('2d');
     ctx2.drawImage(video, 0, 0, tamano, tamano, 0, 0, tamano, tamano);
 	
      let foto = otrocanvas.toDataURL();
      let enlace = document.createElement('a');
      enlace.download="prueba.png"
      enlace.href = foto;
-     enlace.click();
+     enlace.click();*/
+
+function takePicture(){
+	let ctx2 = otrocanvas.getContext('2d');
+    ctx2.drawImage(video, 0, 0, tamano, tamano, 0, 0, tamano, tamano);
+	
+     otrocanvas.toBlob( (blob) => {
+     let file = new File( [ blob ], "RekogniteFile.png" );
+     let dT = new DataTransfer();
+     dT.items.add(file);
+     document.getElementById("cargafile").files = dT.files;
+     console.log("prueba");
+     let subir = document.getElementById("putfile");
+     subir.click();
+     
+} );
 }
 
 
