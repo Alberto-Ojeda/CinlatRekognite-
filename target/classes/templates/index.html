@@ -13,8 +13,11 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
+        <link th:href="@{/css/bootstrapS.min.css}"  href="../static/css/bootstrapS.min.css"  rel="stylesheet">
+        <link th:href="@{/css/styleS.css}"  href="../static/css/styleS.css" rel="stylesheet">
+        <link th:href="@{/css/responsiveS.css}"  href="../static/css/responsiveS.css"  rel="stylesheet">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>CINLAT</title>
+         <title>CINLAT</title>
         <style>
               .cuerpo{
 				min-height:calc(100vh - 80px - 56px);
@@ -23,57 +26,78 @@
     </style>
     </head>
     <body>
-    <header>
-		<div th:fragment="header">
-        <nav class="navbar navbar-expand-lg  bg-primary">
-            <div class="container-fluid">
-              <a class="navbar-brand text-white" th:href="@{/}" style="font-size: 20px; font-family: Arial, Helvetica, sans-serif;">Cinlat</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link  text-white"  th:href="@{/rekognite}"  style="font-size: 20px; font-family: Arial, Helvetica, sans-serif;">Reconocimiento </a>
-                  </li>
-                  <li class="nav-item">
-     <!--              <a class="nav-link text-white" href="#" style="font-size: 20px; font-family: Arial, Helvetica, sans-serif;">Menu</a>-->
-                  </li>
-                </ul>
-                <form class="d-flex" role="search" style="font-size: 20px; font-family: Arial, Helvetica, sans-serif;" >
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-              </div>
-            </div>
-          </nav>
+    <header style="background-color: rgb(15, 50, 66); margin-top: -25px; color: white;">
+		<div  th:fragment="header"> 
+            <div class="container topOff">
+                <div class="col-lg-2 col-md-2 col-xs-4 col-sm-2">
+                    <img alt="Bootstrap Image Preview" width="100px" height="80px" src="https://media-exp1.licdn.com/dms/image/C560BAQG4bkw4Lsud7A/company-logo_200_200/0/1623792358986?e=2159024400&v=beta&t=7_0Vmn9SE7vbG1g9eYeQrtAS9ws3jy7kioFnKo52k60">
+                </div>
+                <div class="col-lg-8 col-md-8 col-xs-8 col-sm-10">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light myNavbar">
+                        <div class="container-fluid">
+                            <!-- Brand and toggle get grouped for better mobile display -->
+                            <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            </div>
+                        
+                            <!-- Collect the nav links, forms, and other content for toggling -->
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav myNavUl">
+                                <li class="nav-item"><a th:href="@{/}"  class="nav-link text-uppercase font-weight-bold js-scroll-trigger footertext" style=" color: white; margin-right: 40px;">Cinlat</a></li>
+                                <li class="nav-item"><a th:href="@{/rekognite}" class="nav-link text-uppercase font-weight-bold js-scroll-trigger" style="color: white;">Reconocimiento</a></li>
+<!--                                 <form class="d-flex" role="search" style="font-size: 20px; font-family: Arial, Helvetica, sans-serif;" >
+                                    <input style="width: 100%; margin-left: 100px;" class="form-control" type="search" placeholder="Search" aria-label="Search">
+                                    <button class="btn " style="color: white;" type="submit">Search</button>
+                                  </form> -->
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                        </div><!-- /.container-fluid -->
+                    </nav>
+                </div>
 
-		</div>
+     
     </header>
     
-       <main class="cuerpo" >
+       <main class="cuerpo" style="height: 100vh;" >
           
-      		
-      </main>
-      
-      
-       
-      <footer style="margin-bottom: 0;"> 
-            <div th:fragment="footer"  class="bg-primary text-secondary mt-5 px-2 py-2 text-center" >
-              <div class="py-2">
-                <div class="row" id="box">
-                  <div class="col" style="margin-left: 40%; margin-top: 10px;">
-                <h6 class=" fw-bold text-white" >Cinlat</h6>
-              </div>
-              <div class="col" style="margin-right: 42%;">
-                <img width="70px" height="50px" th:src="@{/img/cinlat.png}" src="../static/img/cinlat.png" alt="">
-              </div>
-              </div>
-              </div>
+        <div class="col-md-12 noPadding">
+            <div class="filterBack"></div>
+            <div class="abs text-center">
+                <h2 class="absTitle"> </h2>
+                <img src="https://unroll-images-production.s3.amazonaws.com/projects/237/1542237513516-logo-cinlatlogistics.png">
             </div>
-      </footer>            
-            <div class="b-example-divider mb-0"></div>
-          
+      </main>
+      <footer th:fragment="footer"   class="container" style="margin-bottom: 0; width: 100%; background-color: rgb(15, 50, 66);" > 
+        <div  class=" text-secondary mt-5 px-2 py-2 text-center" >
+      <div class="col-md-12 noPadding text-center backFooter" style=" height: 40px; ">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="row" style="margin-top: -50px;">
+                <div class="col-md-4 col-xs-12 marginTop">
+                    <h3 class="footertext">CINLAT Logistics 2022 </h3>
+                </div>
+
+                <div class="col-md-4 col-xs-12 marginTop" style="margin-top: -10px; background-color: rgb(15, 50, 66);">
+                    <img alt="Bootstrap Image Preview" width="100px" src="https://media-exp1.licdn.com/dms/image/C560BAQG4bkw4Lsud7A/company-logo_200_200/0/1623792358986?e=2159024400&v=beta&t=7_0Vmn9SE7vbG1g9eYeQrtAS9ws3jy7kioFnKo52k60">
+
+                </div>
+                <div class="col-md-4 col-xs-12 marginTop ">
+                    <ul class="list-inline centerMobil">
+                        <li><a href="https://www.facebook.com/CINLATLogistics"><img src="img/face.png"/></a></li>
+                        <li><a href="https://www.linkedin.com/company/cinlatlogistics/"><img src="https://yt3.ggpht.com/a/AGF-l78UKMjzMY_5PjOE63fAbRCCkbFLq_sykeDdcw=s900-c-k-c0xffffffff-no-rj-mo" width="40px"/></a></li>
+                        <li><a href="#"><img src="img/google-plus.png"/></a></li>
+                      </ul>	
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+      </footer>
+    </div>
       
       
         </body>

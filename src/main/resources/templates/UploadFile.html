@@ -9,6 +9,10 @@
         <script th:href="@{/js/bootstrap.bundle.min.js}" href="../static/js/bootstrap.bundle.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+         <link th:href="@{/css/bootstrapS.min.css}"  href="../static/css/bootstrapS.min.css"  rel="stylesheet">
+        <link th:href="@{/css/styleS.css}"  href="../static/css/styleS.css" rel="stylesheet">
+        <link th:href="@{/css/responsiveS.css}"  href="../static/css/responsiveS.css"  rel="stylesheet">
+
         <title>CINLAT</title>
 	<style>
 	.cuerpo{
@@ -18,7 +22,8 @@
 	</style>
 </head>
 <body>
-  <header th:replace="index :: header"></header>
+  <header th:replace="index :: header">
+  </header>
 
  <main class="cuerpo" >
   <h4>Upload Single File:</h4>
